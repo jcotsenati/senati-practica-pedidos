@@ -43,7 +43,7 @@ class PedidoDetalleController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('pedidosdetalles.index',[$pedidoID]);
+            return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_success', 'Operacion Satisfactoria !!!');
 
         }catch(\Exception $e){
             

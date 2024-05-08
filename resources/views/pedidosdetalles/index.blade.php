@@ -53,7 +53,22 @@
     <a href="{{ route('pedidos.index') }}" class="btn btn-success"><i class="bi bi-file-plus-fill" style="margin-right: 10px"></i>Lista Pedidos</a>    
 
     @if(session('msn_error'))
-        <div class="alert alert-danger">{{ session('msn_error') }}</div>
+        <script>
+            let mensaje="{{ session('msn_error') }}";
+            Swal.fire({
+                icon:"error",
+                html: `<span style="font-size: 16px;">${mensaje}</span>`,
+            });
+        </script>
+    @endif
+    @if(session('msn_success'))
+        <script>
+            let mensaje="{{ session('msn_success') }}";
+            Swal.fire({
+                icon:"success",
+                html: `<span style="font-size: 16px;">${mensaje}</span>`,
+            });
+        </script>
     @endif
 
 </div>
