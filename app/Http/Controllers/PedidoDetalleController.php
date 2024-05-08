@@ -8,6 +8,7 @@ use App\Models\Pedido;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\UniqueConstraintViolationException;
 
 class PedidoDetalleController extends Controller
 {
@@ -45,8 +46,19 @@ class PedidoDetalleController extends Controller
             DB::commit();
             return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_success', 'Operacion Satisfactoria !!!');
 
-        }catch(\Exception $e){
+        }catch(UniqueConstraintViolationException $e){
+            DB::rollback();
             
+            $msj = strpos($e->getMessage(), "detalles_pedido_pedidoid_productoid_unique");
+            if ($msj !== false) {
+                
+                return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_error',"El Producto ".$producto->Nombre." ya fue ingresado...");
+            }
+            
+            return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_error','No se puede agregar el Producto. Intente Nuevamente');
+        
+        }catch(\Exception $e){
+
             DB::rollback();
             return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_error','No se puede agregar el Producto. Intente Nuevamente');
         }
