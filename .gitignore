@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/storage/database_structure_clear.sql
+/storage/database_structure.sql
