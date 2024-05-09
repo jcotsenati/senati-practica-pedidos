@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Nombres</th>
                 <th>Total</th>
                 <th>Detalle</th>
             </tr>
@@ -15,6 +16,7 @@
             @foreach($pedidos as $pedido)
             <tr>
                 <td>{{ $pedido->PedidoID }}</td>
+                <td>{{ $pedido->cliente->Nombre }}</td>
                 <td>{{ $pedido->Total }}</td>
                 <td>
                     <a href="{{route('pedidosdetalles.index', [$pedido->PedidoID])}}" 

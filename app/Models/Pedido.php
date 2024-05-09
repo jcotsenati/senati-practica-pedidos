@@ -11,4 +11,9 @@ class Pedido extends Model
     protected $table = 'pedidos'; // Nombre de la tabla en la base de datos
     protected $fillable = ['PedidoId','Total'];
     protected $primaryKey = 'PedidoID';
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class,'ClienteID');
+    }
 }
