@@ -15,3 +15,4 @@ Route::get('/pedidosdetalles/{PedidoID}/create', [PedidoDetalleController::class
 Route::post('/pedidosdetalles/{PedidoID}/create/{ProductoID}', [PedidoDetalleController::class, 'store'])->name("pedidosdetalles.store");
 Route::get('/pedidosdetalles/{PedidoID}/edit/{DetalleID}', [PedidoDetalleController::class, 'edit'])->name("pedidosdetalles.edit");
 Route::put('/pedidosdetalles/{PedidoID}/update/{DetalleID}', [PedidoDetalleController::class, 'update'])->name("pedidosdetalles.update");
+Route::delete('/pedidosdetalles/{PedidoID}', [PedidoDetalleController::class, 'destroy'])->name("pedidosdetalles.destroy");

@@ -27,6 +27,13 @@
                     
                     <a href="{{route('pedidosdetalles.edit', [$pedidoID,$detalle->DetalleID])}}" 
                         class="btn btn-warning">Editar</a>
+                    
+                    <form onsubmit='window.confirmaEliminarPedido(event)' action="{{ route('pedidosdetalles.destroy', [$detalle->DetalleID]) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                    
                     {{--
                     
                         <a href="{{route('pedidosdetalles.index', [$pedido->PedidoID])}}" 
@@ -36,11 +43,7 @@
                         class="btn btn-primary">Ver</a>
                     
                     
-                    <form action="{{ route('alumnos.destroy', [$alumno->id]) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                    </form>
+                    
                     --}}
                 </td>
             </tr>
@@ -73,5 +76,27 @@
 
 </div>
 
+<script>
+    function confirmaEliminarPedido(event){
+        event.preventDefault();
+        let form=event.target;
+        
+        Swal.fire({
+            //title: "?",
+            text: "¿Estás seguro de que deseas eliminar este elemento?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+
+    }
+</script>
 
 @endsection

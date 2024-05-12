@@ -102,4 +102,20 @@ class PedidoDetalleController extends Controller
         }
 
     }
+    public function destroy($detalleID){
+
+        try{
+
+            $pedidoDetalle = PedidoDetalle::findOrFail($detalleID);
+            $pedidoID=$pedidoDetalle->PedidoID;
+            $pedidoDetalle->delete();
+
+            return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_success', 'Eliminacion satisfactoria !!!');
+
+        }catch(\Exception $e){
+
+            DB::rollback();
+            return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_error','No se puede eliminar el Registro !!!');
+        }
+    }
 }
