@@ -8,21 +8,24 @@
     <table class="table" border="1">
         <thead>
             <tr>
+                <th>PedidoID</th>
                 <th>ProductoID</th>
                 <th>Nombre</th>
                 <th>Cantidad</th>
                 <th>PrecioUnitario</th>
                 <th>Precio</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach($pedidosDetalles as $detalle)
             <tr>
+                <td>{{ $detalle->PedidoID }}</td>
                 <td>{{ $detalle->ProductoID }}</td>
                 <td>{{ $detalle->producto->Nombre }}</td>
                 <td>{{ $detalle->Cantidad }}</td>
                 <td>{{ $detalle->PrecioUnitario }}</td>
-                <td>{{ $detalle->PrecioUnitario * $detalle->Cantidad }}</td>
+                <td>{{ number_format($detalle->PrecioUnitario * $detalle->Cantidad,2) }}</td>
                 <td>
                     
                     <a href="{{route('pedidosdetalles.edit', [$pedidoID,$detalle->DetalleID])}}" 
@@ -48,6 +51,18 @@
                 </td>
             </tr>
             @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Total</b></td>
+                @if(count($pedidosDetalles) > 0)
+                    <td>{{ $pedidosDetalles[0]->pedido->Total }}</td>
+                @else
+                    <td>0.00</td>
+                @endif
+            </tr>
         </tbody>
     </table>
     

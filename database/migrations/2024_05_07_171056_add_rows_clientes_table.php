@@ -26,6 +26,14 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('clientes')->insert([
+            'Nombre'=>'Dina Boluarte',
+            'Direccion' => 'Av Union 130',
+            'Telefono' => '914759801',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

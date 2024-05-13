@@ -34,6 +34,14 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('pedidos')->insert([
+            'ClienteID'=>3,
+            'Total' => 0,
+            'FechaPedido' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

@@ -104,12 +104,20 @@ class PedidoDetalleController extends Controller
     }
     public function destroy($detalleID){
 
+        DB::beginTransaction();
+
         try{
 
             $pedidoDetalle = PedidoDetalle::findOrFail($detalleID);
+            $totalAnterior=$pedidoDetalle->Cantidad*$pedidoDetalle->PrecioUnitario;
             $pedidoID=$pedidoDetalle->PedidoID;
             $pedidoDetalle->delete();
 
+            $pedido = Pedido::findOrFail($pedidoID);
+            $pedido->Total-=$totalAnterior;
+            $pedido->save();
+
+            DB::commit();
             return redirect()->route('pedidosdetalles.index',[$pedidoID])->with('msn_success', 'Eliminacion satisfactoria !!!');
 
         }catch(\Exception $e){
