@@ -15,8 +15,9 @@ class PedidoDetalleController extends Controller
     public function index(Request $request,$pedidoID)
     {
         $pedidosDetalles = PedidoDetalle::where("PedidoID",$pedidoID)->get();
+        $pedido = Pedido::findOrFail($pedidoID);
         //dd($pedidosDetalles->toJson());
-        return view('pedidosdetalles.index', compact('pedidosDetalles','pedidoID'));
+        return view('pedidosdetalles.index', compact('pedidosDetalles','pedido'));
     }
     public function create(Request $request,$pedidoID)
     {

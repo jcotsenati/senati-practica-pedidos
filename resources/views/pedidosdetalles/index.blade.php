@@ -1,9 +1,10 @@
 @extends('layout')    
 @section('content')
 <div class="container">
-    <h2>Pedido Detalles</h2>
-    
-    <a href="{{ route('pedidosdetalles.create', $pedidoID) }}" class="btn btn-primary"><i class="bi bi-file-plus-fill" style="margin-right: 10px"></i>Agregar</a>
+
+    <h2>Pedido de: {{$pedido->cliente->Nombre}}</h2>
+
+    <a href="{{ route('pedidosdetalles.create', $pedido->PedidoID) }}" class="btn btn-primary"><i class="bi bi-file-plus-fill" style="margin-right: 10px"></i>Agregar</a>
     
     <table class="table" border="1">
         <thead>
@@ -28,7 +29,7 @@
                 <td>{{ number_format($detalle->PrecioUnitario * $detalle->Cantidad,2) }}</td>
                 <td>
                     
-                    <a href="{{route('pedidosdetalles.edit', [$pedidoID,$detalle->DetalleID])}}" 
+                    <a href="{{route('pedidosdetalles.edit', [$pedido->PedidoID,$detalle->DetalleID])}}" 
                         class="btn btn-warning">Editar</a>
                     
                     <form onsubmit='window.confirmaEliminarPedido(event)' action="{{ route('pedidosdetalles.destroy', [$detalle->DetalleID]) }}" method="POST" style="display: inline;">

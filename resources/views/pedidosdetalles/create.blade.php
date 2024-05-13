@@ -48,9 +48,8 @@
         </tbody>
     </table>
     
-    {{-- 
-    <a href="{{ route('pedidosdetalles.create', $pedidoID) }}" class="btn btn-success"><i class="bi bi-file-plus-fill" style="margin-right: 10px"></i>Agregar</a>
-    --}}    
+    
+    <a href="{{ route('pedidosdetalles.index', $pedidoID) }}" class="btn btn-danger">Cancelar</a>    
 
 </div>
 @endsection
