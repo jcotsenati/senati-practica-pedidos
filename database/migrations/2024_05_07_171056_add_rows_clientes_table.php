@@ -18,6 +18,14 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('clientes')->insert([
+            'Nombre'=>'Juan Mendez',
+            'Direccion' => 'Calle Melgar 130',
+            'Telefono' => '934759801',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

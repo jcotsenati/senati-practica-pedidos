@@ -44,6 +44,19 @@ return new class extends Migration
             'Total' => 4,  
             'updated_at' => now()
         ]);
+        ////////////////////////////////////////////
+        DB::table('detalles_pedido')->insert([
+            'PedidoID'=>3,
+            'ProductoID' => 3,
+            'Cantidad' => 1,
+            'PrecioUnitario' => 10,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('pedidos')->where('PedidoID', 3)->update([
+            'Total' => 10,  
+            'updated_at' => now()
+        ]);
     }
 
     /**
