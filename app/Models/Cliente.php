@@ -11,4 +11,10 @@ class Cliente extends Model
     protected $table = 'clientes'; // Nombre de la tabla en la base de datos
     protected $fillable = ['Nombre','Direccion','Telefono'];
     protected $primaryKey = 'ClienteID';
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class,'ClienteID');
+    }
+
 }

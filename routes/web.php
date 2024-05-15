@@ -8,6 +8,7 @@ use App\Http\Controllers\PedidoDetalleController;
 //CRUD PEDIDOS
 Route::get('/', [PedidoController::class, 'index'])->name("pedidos.index");
 Route::get('/pedidos', [PedidoController::class, 'index'])->name("pedidos.index");
+Route::get('/pedidos/buscar', [PedidoController::class, 'buscar'])->name('pedidos.buscar');
 
 //CRUD PEDIDOS DETALLES
 Route::get('/pedidosdetalles/{PedidoID}', [PedidoDetalleController::class, 'index'])->name("pedidosdetalles.index");
